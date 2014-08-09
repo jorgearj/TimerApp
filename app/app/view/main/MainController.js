@@ -14,13 +14,31 @@ Ext.define('TimerApp.view.main.MainController', {
 
     alias: 'controller.main',
 
-    onClickButton: function () {
-        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
+    task: null,
+
+
+    onClickStartButton: function () {
+        //Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
+        var me = this;
+
+        me.task = Ext.TaskManager.start({
+            run: me.updateClock,
+            interval: 1000
+        });
+
     },
 
-    onConfirm: function (choice) {
-        if (choice === 'yes') {
-            //
+    onClickStopButton: function () {
+        //Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
+        var me = this;
+        if(me.task){
+            me.task.destroy();
         }
+
+    },
+
+    updateClock: function(){
+        var me = this;
+
     }
 });

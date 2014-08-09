@@ -16,28 +16,46 @@ Ext.define('TimerApp.view.main.Main', {
     },
 
     layout: {
-        type: 'border'
+        type: 'hbox',
+        height: 100
     },
 
-    items: [{
-        xtype: 'panel',
+    items: [
+        {
+            xtype: 'label',
+            name: 'timer',
+            flex: 0.5,
+            text: Ext.Date.format(new Date(), 'g:i:s')
+        },{
+            xtype: 'button',
+            text: 'Start Timer',
+            flex: 0.25,
+            handler: 'onClickStartButton'
+        },{
+            xtype: 'button',
+            text: 'Stop Timer',
+            flex: 0.25,
+            handler: 'onClickStopButton'
+        }
+
+        /*xtype: 'panel',
         bind: {
             title: '{name}'
         },
-        region: 'west',
-        html: '<ul><li>This area is commonly used for navigation, for example, using a "tree" component.</li></ul>',
-        width: 250,
+        html: '<ul><li>This might be where the timer will appear</li></ul>',
+        width: '100%',
         split: true,
         tbar: [{
-            text: 'Button',
+            text: 'Start Timer',
             handler: 'onClickButton'
-        }]
-    },{
-        region: 'center',
-        xtype: 'tabpanel',
-        items:[{
-            title: 'Tab 1',
-            html: '<h2>Content appropriate for the current navigation.</h2>'
-        }]
-    }]
+        },{
+            region: 'center',
+            xtype: 'tabpanel',
+            items:[{
+                title: 'Tab 1',
+                html: '<h2>Content appropriate for the current navigation.</h2>'
+            }]
+        }]*/
+
+    ]
 });
