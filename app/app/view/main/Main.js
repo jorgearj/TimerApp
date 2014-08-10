@@ -25,7 +25,8 @@ Ext.define('TimerApp.view.main.Main', {
             xtype: 'label',
             name: 'timer',
             flex: 0.5,
-            text: Ext.Date.format(new Date(), 'g:i:s')
+            text: '100',
+            reference: 'timer'
         },{
             xtype: 'button',
             text: 'Start Timer',

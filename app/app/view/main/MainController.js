@@ -16,29 +16,40 @@ Ext.define('TimerApp.view.main.MainController', {
 
     task: null,
 
+    init: function () {
+        var me = this;
+
+        var runner = new Ext.util.TaskRunner();
+
+        me.task = runner.newTask({
+            run: me.updateTimer,
+            interval: 1000
+        });
+
+    },
 
     onClickStartButton: function () {
         //Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
         var me = this;
-
-        me.task = Ext.TaskManager.start({
-            run: me.updateClock,
-            interval: 1000
-        });
-
+        if (me.task) {
+            me.task.start();
+        }
     },
 
     onClickStopButton: function () {
         //Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
         var me = this;
         if(me.task){
-            me.task.destroy();
+            me.task.stop();
         }
 
     },
 
-    updateClock: function(){
+    updateTimer: function () {
         var me = this;
-
+        var timer = me.lookupReference('timer'),
+            timerValue = timer.getText;
+        console.log("Updating clock: ", timer);
+        timer.setText(timerValue - 1)
     }
 });
